@@ -59,6 +59,7 @@ class CommentCard extends StatelessWidget {
             padding: const EdgeInsets.all(8),
             child: const Icon(
               Icons.favorite,
+              color: Colors.white,
               size: 16,
             ),
           )

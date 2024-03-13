@@ -85,15 +85,44 @@ class _ProfileScreenState extends State<ProfileScreen> {
             padding: const EdgeInsets.all(16),
             child: Column(
               children: [
+                CircleAvatar(
+                  backgroundColor: Colors.grey,
+                  backgroundImage: NetworkImage(
+                    userData['photoUrl'],
+                  ),
+                  radius: 40,
+                ),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  padding: const EdgeInsets.only(
+                    top: 15,
+                  ),
+                  child: Center(
+                    child: Text(
+                      userData['username'],
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          fontSize: 17
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  padding: const EdgeInsets.only(
+                    top: 1,
+                  ),
+                  child: Center(
+                    child: Text(
+                      userData['bio'],
+                      style: TextStyle(color: Colors.blue),
+                    ),
+                  ),
+                ),
                 Row(
                   children: [
-                    CircleAvatar(
-                      backgroundColor: Colors.grey,
-                      backgroundImage: NetworkImage(
-                        userData['photoUrl'],
-                      ),
-                      radius: 40,
-                    ),
+
                     Expanded(
                       flex: 1,
                       child: Column(
@@ -105,7 +134,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             children: [
                               buildStatColumn(postLen, "posts"),
                               buildStatColumn(followers, "followers"),
-                              buildStatColumn(following, "following"),
+                              buildStatColumn(following, "Connections"),
                             ],
                           ),
                           Row(
@@ -115,9 +144,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               FirebaseAuth.instance.currentUser!.uid ==
                                   widget.uid
                                   ? SizedBox(
-                                width: 200,
-                                height: 100,
-                                child: FollowButton(
+                                  width: 200,
+                                  height: 50,
+                                  child: FollowButton(
                                   text: 'Sign Out',
                                   backgroundColor:
                                   Colors.brown.shade300,
@@ -158,7 +187,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 },
                               )
                                   : FollowButton(
-                                text: 'Follow',
+                                text: 'Connect',
                                 backgroundColor: Colors.blue,
                                 textColor: Colors.white,
                                 borderColor: Colors.blue,
@@ -183,30 +212,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ],
                 ),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  padding: const EdgeInsets.only(
-                    top: 15,
-                  ),
-                  child: Text(
-                    userData['username'],
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                      fontSize: 17
-                    ),
-                  ),
-                ),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  padding: const EdgeInsets.only(
-                    top: 1,
-                  ),
-                  child: Text(
-                    userData['bio'],
-                    style: TextStyle(color: Colors.black),
-                  ),
-                ),
+
+
               ],
             ),
           ),

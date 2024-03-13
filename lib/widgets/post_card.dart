@@ -104,6 +104,7 @@ class _PostCardState extends State<PostCard> {
                           widget.snap['username'].toString(),
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
+                            color: Colors.black
                           ),
                         ),
                       ],
@@ -148,7 +149,7 @@ class _PostCardState extends State<PostCard> {
                             },
                           );
                         },
-                        icon: const Icon(Icons.more_vert),
+                        icon: const Icon(Icons.more_vert, color: Colors.black,),
                       )
                     : Container(),
               ],
@@ -203,17 +204,33 @@ class _PostCardState extends State<PostCard> {
           // LIKE, COMMENT SECTION OF THE POST
           Row(
             children: <Widget>[
+              SizedBox(
+                width: 10,
+              ),
+              DefaultTextStyle(
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleSmall!
+                      .copyWith(fontWeight: FontWeight.w800),
+                  child: Text(
+                    '${widget.snap['likes'].length} likes',
+                    style: TextStyle(color: Colors.black),
+                  )),
+              SizedBox(
+                width: 200,
+              ),
               LikeAnimation(
                 isAnimating: widget.snap['likes'].contains(user.uid),
                 smallLike: true,
                 child: IconButton(
-                  icon: widget.snap['likes'].contains(user.uid)
-                      ? const Icon(
+                  icon: widget.snap['likes'].contains(user.uid) ?
+                  const Icon(
                           Icons.thumb_up,
-                          color: Colors.red,
+                          color: Colors.pink,
                         )
                       : const Icon(
                           Icons.thumb_up_off_alt_outlined,
+                          color: Colors.black,
                         ),
                   onPressed: () => FireStoreMethods().likePost(
                     widget.snap['postId'].toString(),
@@ -222,9 +239,13 @@ class _PostCardState extends State<PostCard> {
                   ),
                 ),
               ),
+              SizedBox(
+                width: 5,
+              ),
               IconButton(
                 icon: const Icon(
                   Icons.comment_outlined,
+                  color: Colors.black,
                 ),
                 onPressed: () => Navigator.of(context).push(
                   MaterialPageRoute(
@@ -234,17 +255,17 @@ class _PostCardState extends State<PostCard> {
                   ),
                 ),
               ),
-              IconButton(
-                  icon: const Icon(
-                    Icons.send,
-                  ),
-                  onPressed: () {}),
-              Expanded(
-                  child: Align(
-                alignment: Alignment.bottomRight,
-                child: IconButton(
-                    icon: const Icon(Icons.bookmark_border), onPressed: () {}),
-              ))
+              // IconButton(
+              //     // icon: const Icon(
+              //    //   Icons.send,
+              //    //  ),
+              //     onPressed: () {}),
+              // Expanded(
+              //     child: Align(
+              //     alignment: Alignment.bottomRight,
+              //     child: IconButton(
+              //       icon: const Icon(Icons.bookmark_border), onPressed: () {}),
+              // ))
             ],
           ),
           //DESCRIPTION AND NUMBER OF COMMENTS
@@ -254,15 +275,7 @@ class _PostCardState extends State<PostCard> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                DefaultTextStyle(
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleSmall!
-                        .copyWith(fontWeight: FontWeight.w800),
-                    child: Text(
-                      '${widget.snap['likes'].length} likes',
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    )),
+
                 Container(
                   width: double.infinity,
                   padding: const EdgeInsets.only(
@@ -270,12 +283,13 @@ class _PostCardState extends State<PostCard> {
                   ),
                   child: RichText(
                     text: TextSpan(
-                      style: const TextStyle(color: Colors.red),
+                      style: const TextStyle(color: Colors.black),
                       children: [
                         TextSpan(
                           text: widget.snap['username'].toString(),
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
+                            fontSize: 20
                           ),
                         ),
                         TextSpan(
@@ -292,7 +306,7 @@ class _PostCardState extends State<PostCard> {
                       'View all $commentLen comments',
                       style: const TextStyle(
                         fontSize: 16,
-                        color: Colors.cyan,
+                        color: Colors.grey,
                       ),
                     ),
                   ),
@@ -310,7 +324,7 @@ class _PostCardState extends State<PostCard> {
                     DateFormat.yMMMd()
                         .format(widget.snap['datePublished'].toDate()),
                     style: const TextStyle(
-                      color: Colors.green,
+                      color: Colors.black,
                     ),
                   ),
                 ),

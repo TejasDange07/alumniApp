@@ -173,43 +173,71 @@ class _AddPostScreenState extends State<AddPostScreen> {
           )
         ],
         ),
-      // POST FORM
-         body: Column(
-        children: <Widget>[
-          isLoading
-              ? const LinearProgressIndicator()
-              : const Padding(padding: EdgeInsets.only(top: 0.0)),
-          const Divider(),
+         // POST FORM
+         body: ListView(
+           children : [Column(
+           children: <Widget>[
+            isLoading
+                ? const LinearProgressIndicator()
+                : const Padding(padding: EdgeInsets.only(top: 0.0)),
+            const Divider(),
+             SizedBox(
+               width: MediaQuery
+                   .of(context)
+                   .size
+                   .width * 0.8,
+               height: MediaQuery
+                   .of(context)
+                   .size
+                   .width * 0.7,
+              // height: 300.0,
+              // width: 300.0,
+               child: AspectRatio(
+                 aspectRatio: 487 / 451,
+                 child: Container(
+                   decoration: BoxDecoration(
+                       image: DecorationImage(
+                         fit: BoxFit.fill,
+                         alignment: FractionalOffset.topCenter,
+                         image: MemoryImage(_file!),
+                       )),
+                 ),
+               ),
+             ),
 
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              CircleAvatar(
-                backgroundImage: NetworkImage(
-                  userProvider.getUser.photoUrl,
-                ),
-              ),
-              SizedBox(
-                width: MediaQuery
-                    .of(context)
-                    .size
-                    .width * 0.4,
-                child: TextField(
-                  controller: _descriptionController,
-                  decoration: const InputDecoration(
-                      hintText: "Write a caption...",
-                      hintStyle: TextStyle(color: Colors.grey),
-                      border: InputBorder.none),
-                  maxLines: 8,
-                ),
-              ),
+             const Divider(),
 
-            ],
-          ),
-          const Divider(),
-        ],
-      ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                CircleAvatar(
+                  backgroundImage: NetworkImage(
+                    userProvider.getUser.photoUrl,
+                  ),
+                ),
+                SizedBox(
+                  width: MediaQuery
+                      .of(context)
+                      .size
+                      .width * 0.6,
+                  child: TextField(
+                    controller: _descriptionController,
+                    decoration: const InputDecoration(
+                        hintText: "Write a caption...",
+                        hintStyle: TextStyle(color: Colors.grey),
+                        border: InputBorder.none),
+                    maxLines: 8,
+                  ),
+                ),
+
+              ],
+            ),
+            const Divider(),
+                   ],
+                 ),
+    ]
+         ),
     );
   }
 }

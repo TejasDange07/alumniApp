@@ -19,19 +19,21 @@ class _SearchScreenState extends State<SearchScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Form(
-          child: TextFormField(
-            controller: searchController,
-            decoration:
-                const InputDecoration(labelText: 'Search for a user...'),
-            onFieldSubmitted: (String _) {
-              setState(() {
-                isShowUsers = true;
-              });
-            },
-          ),
+        title:
+            Form(
+              child: TextFormField(
+                controller: searchController,
+                decoration:
+                    const InputDecoration(labelText: 'Search for a user...'),
+                onFieldSubmitted: (String _) {
+                  setState(() {
+                    isShowUsers = true;
+                  });
+                },
+              ),
+            ),
+
         ),
-      ),
       body: isShowUsers
           ? FutureBuilder(
               future: FirebaseFirestore.instance
