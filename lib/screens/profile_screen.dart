@@ -115,7 +115,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   child: Center(
                     child: Text(
-                      userData['bio'],
+                      userData['description'],
                       style: TextStyle(color: Colors.blue),
                     ),
                   ),

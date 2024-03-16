@@ -37,6 +37,7 @@ class _FeedScreenState extends State<FeedScreen> {
               ],
             ),
       body: StreamBuilder(
+
         stream: FirebaseFirestore.instance.collection('posts').snapshots(),
         builder: (context,
             AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
@@ -46,6 +47,7 @@ class _FeedScreenState extends State<FeedScreen> {
             );
           }
           return ListView.builder(
+
             itemCount: snapshot.data!.docs.length,
             itemBuilder: (ctx, index) => Container(
               margin: EdgeInsets.symmetric(

@@ -10,6 +10,10 @@ import 'package:alumniapp/screens/login_screen.dart';
 import 'package:alumniapp/utils/utils.dart';
 import 'package:alumniapp/widgets/text_field_input.dart';
 
+import 'dart:typed_data';
+import 'package:http/http.dart' as http;
+
+
 class RegisterScreenPage extends StatefulWidget {
   const RegisterScreenPage({super.key});
 
@@ -24,6 +28,9 @@ class _RegisterScreenPageState extends State<RegisterScreenPage> {
   final TextEditingController _usernameController = TextEditingController();
   bool _isLoading = false;
   Uint8List? _image;
+
+  // final response =  http.get(Uri.parse('https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'));
+
 
   @override
   void dispose() {
@@ -41,6 +48,9 @@ class _RegisterScreenPageState extends State<RegisterScreenPage> {
     });
   }
 
+
+
+
   void signUpUser() async {
     setState(() {
       _isLoading = true;
@@ -50,7 +60,8 @@ class _RegisterScreenPageState extends State<RegisterScreenPage> {
         password: _passwordController.text,
         username: _usernameController.text,
         description: _descriptionController.text,
-        file: _image!);
+        file: _image!
+    );
 
     setState(() {
       _isLoading = false;
